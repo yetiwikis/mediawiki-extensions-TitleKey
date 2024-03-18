@@ -206,7 +206,7 @@ class TitleKey {
 	 * @param int $offset
 	 * @return string
 	 */
-	private static function prefixSearch( $namespaces, $search, $limit, $offset ) {
+	public static function prefixSearch( $namespaces, $search, $limit, $offset ) {
 		// support only one namespace
 		$ns = array_shift( $namespaces );
 		if ( in_array( NS_MAIN, $namespaces ) ) {

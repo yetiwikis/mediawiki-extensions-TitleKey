@@ -83,6 +83,12 @@ class TitleKey {
 
 	// Hook functions....
 
+	/** */
+	public static function onRegistration() {
+		global $wgSearchType;
+		$wgSearchType = TitleKeySearch::class;
+	}
+
 	/**
 	 * Delay setup to avoid compatibility problems with hook ordering
 	 * when coexisting with MWSearch... we want MWSearch to be able to
@@ -91,7 +97,6 @@ class TitleKey {
 	 */
 	public static function setup() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( 'PrefixSearchBackend', 'TitleKey::prefixSearchBackend' );
 		$hookContainer->register( 'SearchGetNearMatch', 'TitleKey::searchGetNearMatch' );
 	}
 
@@ -192,21 +197,6 @@ class TitleKey {
 
 			$updater->output( "ok.\n" );
 		}
-	}
-
-	/**
-	 * Override the default OpenSearch backend...
-	 *
-	 * @param int[] $ns
-	 * @param string $search term
-	 * @param int $limit max number of items to return
-	 * @param array &$results out param -- list of title strings
-	 * @param int $offset number of items to offset
-	 * @return false
-	 */
-	public static function prefixSearchBackend( $ns, $search, $limit, &$results, $offset = 0 ) {
-		$results = self::prefixSearch( $ns, $search, $limit, $offset );
-		return false;
 	}
 
 	/**

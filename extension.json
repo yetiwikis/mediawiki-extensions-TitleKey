@@ -12,6 +12,7 @@
 	"requires": {
 		"MediaWiki": ">= 1.36"
 	},
+	"callback": "TitleKey::onRegistration",
 	"MessagesDirs": {
 		"TitleKey": [
 			"i18n"
@@ -19,6 +20,7 @@
 	},
 	"AutoloadClasses": {
 		"TitleKey": "includes/TitleKey.php",
+		"TitleKeySearch": "includes/TitleKeySearch.php",
 		"RebuildTitleKeys": "maintenance/rebuildTitleKeys.php"
 	},
 	"ExtensionFunctions": [
